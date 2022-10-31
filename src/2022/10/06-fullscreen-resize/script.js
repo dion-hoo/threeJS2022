@@ -53,8 +53,8 @@ const renderer = new THREE.WebGLRenderer({
     canvas,
 });
 
-renderer.setPixelRatio(devicePixelRatio);
 renderer.setSize(sizes.width, sizes.height);
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
 // anmimations
 const clock = new THREE.Clock();
@@ -80,9 +80,21 @@ const animation = () => {
 animation();
 
 // resize
-window.onresize = () => {
+window.addEventListener('resize', () => {
     camera.aspect = innerWidth / innerHeight;
     camera.updateProjectionMatrix();
 
     renderer.setSize(innerWidth, innerHeight);
-};
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+});
+
+// double click
+window.addEventListener('dblclick', () => {
+    const fullscreenElement = document.fullscreenElement || document.webkitFullscreenElement;
+
+    if (!fullscreenElement) {
+        canvas.requestFullscreen();
+    } else {
+        document.exitFullscreen();
+    }
+});
