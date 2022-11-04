@@ -3,7 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCSSExtractPlugin = require('mini-css-extract-plugin');
 const path = require('path');
 
-const pathAlias = '../src/2022/11/09-Geometries';
+const pathAlias = '../src/2022/11/12-debug UI';
 
 module.exports = {
     entry: path.resolve(__dirname, `${pathAlias}/script.js`),
